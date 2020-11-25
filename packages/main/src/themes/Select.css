@@ -8,6 +8,7 @@
 	outline: none;
 	cursor: pointer;
 	overflow: hidden;
+	position: relative;
 }
 
 .ui5-select-label-root {
@@ -31,4 +32,16 @@
 
 :host(:not([disabled])) {
 	cursor: pointer;
+}
+
+.ui5-select-hidden-select {
+	opacity: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.ui5-select-root:active [ui5-icon] {
+	background: var(--sapButton_Selected_Background);
+	color: var(--sapButton_Active_TextColor);
 }

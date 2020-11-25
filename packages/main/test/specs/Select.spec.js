@@ -296,8 +296,8 @@ describe("Select general interaction", () => {
 
 
 	it("Tests aria-label and aria-labelledby", () => {
-		const select1 = browser.$("#textAreaAriaLabel").shadow$(".ui5-select-root");
-		const select2 = browser.$("#textAreaAriaLabelledBy").shadow$(".ui5-select-root");
+		const select1 = browser.$("#textAreaAriaLabel").shadow$(".ui5-select-hidden-select");
+		const select2 = browser.$("#textAreaAriaLabelledBy").shadow$(".ui5-select-hidden-select");
 		const EXPECTED_ARIA_LABEL1 = "Hello World";
 		const EXPECTED_ARIA_LABEL2 = "info text";
 

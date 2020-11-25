@@ -314,7 +314,7 @@ class Select extends UI5Element {
 	}
 
 	get _isPickerOpen() {
-		return this.responsivePopover && this.responsivePopover.opened;
+		return (this.responsivePopover && this.responsivePopover.opened) || false;
 	}
 
 	async _respPopover() {
@@ -408,13 +408,19 @@ class Select extends UI5Element {
 			this._toggleRespPopover();
 		}
 
-		if (isSpace(event)) {
+		if (isSpace(event) || isEnter(event)) {
 			event.preventDefault();
 		}
 
 		if (!this._isPickerOpen) {
 			this._handleArrowNavigation(event, true);
 		}
+	}
+
+	_nativeSelectMouseDown(event) {
+		event.preventDefault();
+
+		this._hiddenSelect.focus();
 	}
 
 	_onkeyup(event) {
@@ -564,12 +570,20 @@ class Select extends UI5Element {
 		return this.i18nBundle.getText(INPUT_SUGGESTIONS_TITLE);
 	}
 
+	get _hiddenSelect() {
+		return this.shadowRoot.getElementById(`${this.__id}-hidden-select`);
+	}
+
 	get _currentSelectedItem() {
 		return this.shadowRoot.querySelector(`#${this.options[this._selectedIndex]._id}-li`);
 	}
 
 	get _currentlySelectedOption() {
 		return this.options[this._selectedIndex];
+	}
+
+	get _curentValue() {
+		return this._currentlySelectedOption ? this._currentlySelectedOption.textContent : "";
 	}
 
 	get tabIndex() {
